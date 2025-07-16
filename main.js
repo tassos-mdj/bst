@@ -36,6 +36,8 @@ prettyPrint(test.root);
 console.log(test.find(7));
 
 // Test levelOrderForEach
-// test.levelOrderForEach((item) => console.log(item.data));
+test.levelOrderForEach((item) => console.log("Levelorder:", item.data));
 
-test.inOrderForEach((item) => console.log(item.data));
+test.inOrderForEach((item) => console.log("Inorder:", item.data));
+test.preOrderForEach((item) => console.log("Preorder:", item.data));
+test.postOrderForEach((item) => console.log("Postorder:", item.data));

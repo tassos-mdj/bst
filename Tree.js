@@ -81,17 +81,48 @@ export class Tree {
         return;
     }
 
-    inOrderForEach(callback, root = this.root, s = []) {
+    inOrderForEach(callback, root = this.root) {
         if (root === null) return;
-        s.push(root);
+
         if (root.left !== null) {
-            this.inOrderForEach(callback, root.left, s);
+            this.inOrderForEach(callback, root.left);
         }
         callback(root);
-        s.pop();
         if (root.right !== null) {
-            this.inOrderForEach(callback, root.right, s)
+            this.inOrderForEach(callback, root.right)
         }
+        return;
+    }
+
+    preOrderForEach(callback, root = this.root) {
+        if (root === null) return;
+
+        callback(root);
+
+        if (root.left !== null) {
+            this.preOrderForEach(callback, root.left);
+        }
+
+        if (root.right !== null) {
+            this.preOrderForEach(callback, root.right)
+        }
+
+        return;
+    }
+
+    postOrderForEach(callback, root = this.root) {
+        if (root === null) return;
+        
+        if (root.left !== null) {
+            this.postOrderForEach(callback, root.left);
+        }
+
+        if (root.right !== null) {
+            this.postOrderForEach(callback, root.right)
+        }
+
+        callback(root);
+
         return;
     }
 }
