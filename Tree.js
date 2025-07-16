@@ -24,6 +24,26 @@ export class Tree {
         return root;
     }
 
+    // Delete method
+    deleteItem(data, root = this.root) {
+    if (root === null) return root;
+
+    if (data < root.data) {
+        root.left = this.deleteItem(data, root.left);
+    } else if (root.data < data) {
+        root.right = this.deleteItem(data, root.right);
+    } else {
+        if (root.left === null) { return root.right; }
+
+        if (root.right === null) { return root.left; }
+
+        let succ = getSuccessor(root);
+        root.data = succ.data;
+        root.right = this.deleteItem(succ.data, root.right);
+    }
+    return root;
+}
+
     find(data, root = this.root) {
         if (root === null) {
             return root;
@@ -40,6 +60,33 @@ export class Tree {
         } else {
             console.log("Not found");
         }
+    }
+
+    levelOrderForEach(callback, root = this.root, q = []) {
+        if (root === null || !root) {
+            return;
+        }
+
+        if (!callback) {
+            throw new Error("You must provide a callback function");
+        }
+
+        q.push(root);
+        callback(root);
+        q.shift();
+        
+        if (root.left !== null) {
+            q.push(root.left);
+        }
+
+        if (root.right !== null) {
+           q.push(root.right);
+        }
+        console.log(q);
+    
+        this.levelOrderForEach(callback, q[0], q);
+        
+        
     }
 
 }
@@ -83,40 +130,11 @@ function dupRemove(array) {
     return [...new Set(array)];
 }
 
-
-
-// Delete function
-export function deleteItem(root, data) {
-    if (root === null) return root;
-
-    if (data < root.data) {
-        root.left = deleteItem(root.left, data);
-    } else if (root.data < data) {
-        root.right = deleteItem(root.right, data);
-    } else {
-        if (root.left === null) { return root.right; }
-
-        if (root.right === null) { return root.left; }
-
-        let succ = getSuccessor(root);
-        root.data = succ.data;
-        root.right = deleteItem(root.right, succ.data);
-    }
-    return root;
-}
-
+// Find successor helper function for deleteItem
 function getSuccessor(root) {
     root = root.right;
     while (root !== null && root.left !== null) {
         root = root.left
     }
     return root;
-}
-
-
-
-function levelOrderForEach(callback) {
-    let q = [];
-
-
 }

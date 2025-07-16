@@ -1,4 +1,4 @@
-import { Tree, deleteItem } from "./tree.js";
+import { Tree } from "./tree.js";
 
 // Console tree visualizer function - Provided by the lesson
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -29,8 +29,11 @@ test.insert(test.root, 6);
 prettyPrint(test.root);
 
 // Test delete
-deleteItem(test.root, 9);
+test.deleteItem(9);
 prettyPrint(test.root);
 
 // Test find
 console.log(test.find(7));
+
+// Test levelOrderForEach
+test.levelOrderForEach((item) => console.log(item.data));
