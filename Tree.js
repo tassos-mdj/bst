@@ -61,32 +61,24 @@ export class Tree {
             console.log("Not found");
         }
     }
-
-    levelOrderForEach(callback, root = this.root, q = []) {
-        if (root === null || !root) {
-            return;
-        }
-
-        if (!callback) {
-            throw new Error("You must provide a callback function");
-        }
-
-        q.push(root);
-        callback(root);
-        q.shift();
-        
-        if (root.left !== null) {
-            q.push(root.left);
-        }
-
-        if (root.right !== null) {
-           q.push(root.right);
-        }
-        console.log(q);
     
-        this.levelOrderForEach(callback, q[0], q);
-        
-        
+    levelOrderForEach(callback, root = this.root) {
+        const q = [root];
+
+        while (q.length > 0) {
+            const current = q.shift();
+            if (current === null) continue;
+            callback(current);
+            if (current.left !== null) {
+                q.push(current.left);
+            }
+
+            if (current.right !== null) {
+            q.push(current.right);
+            }
+        }
+
+        return;
     }
 
 }

@@ -29,8 +29,8 @@ test.insert(test.root, 6);
 prettyPrint(test.root);
 
 // Test delete
-test.deleteItem(9);
-prettyPrint(test.root);
+// test.deleteItem(9);
+// prettyPrint(test.root);
 
 // Test find
 console.log(test.find(7));
