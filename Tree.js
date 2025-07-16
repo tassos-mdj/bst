@@ -81,6 +81,19 @@ export class Tree {
         return;
     }
 
+    inOrderForEach(callback, root = this.root, s = []) {
+        if (root === null) return;
+        s.push(root);
+        if (root.left !== null) {
+            this.inOrderForEach(callback, root.left, s);
+        }
+        callback(root);
+        s.pop();
+        if (root.right !== null) {
+            this.inOrderForEach(callback, root.right, s)
+        }
+        return;
+    }
 }
 
 // Intermediate function to provide sorted and unique values array
