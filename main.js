@@ -23,21 +23,22 @@ prettyPrint(test.root);
 console.log(test.root);
 
 // Test insert
-test.insert(test.root, 40);
-prettyPrint(test.root);
-test.insert(test.root, 6);
-prettyPrint(test.root);
+// test.insert(test.root, 40);
+// prettyPrint(test.root);
+// test.insert(test.root, 6);
+// prettyPrint(test.root);
 
 // Test delete
 // test.deleteItem(9);
 // prettyPrint(test.root);
 
 // Test find
-console.log(test.find(7));
+// console.log(test.find(7));
 
 // Test levelOrderForEach
-test.levelOrderForEach((item) => console.log("Levelorder:", item.data));
+// test.levelOrderForEach((item) => console.log("Levelorder:", item.data));
 
-test.inOrderForEach((item) => console.log("Inorder:", item.data));
-test.preOrderForEach((item) => console.log("Preorder:", item.data));
-test.postOrderForEach((item) => console.log("Postorder:", item.data));
+// test.inOrderForEach((item) => console.log("Inorder:", item.data));
+// test.preOrderForEach((item) => console.log("Preorder:", item.data));
+// test.postOrderForEach((item) => console.log("Postorder:", item.data));
+console.log(test.height(test.find(8)))

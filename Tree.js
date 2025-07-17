@@ -125,6 +125,24 @@ export class Tree {
 
         return;
     }
+
+    height(root = this.root, h = 0) {
+        let curr = root;
+        
+            if (curr.left !== null) {
+                h += 1;
+                h = this.height(curr.left, h);
+                
+            } else {
+                if (curr.right !== null) {
+                    h += 1;
+                    h = this.height(curr.right, h);
+                
+                }
+            }
+        
+        return h;
+    }
 }
 
 // Intermediate function to provide sorted and unique values array
