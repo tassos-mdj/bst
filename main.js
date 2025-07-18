@@ -29,8 +29,10 @@ console.log(test.root);
 // prettyPrint(test.root);
 
 // Test delete
-// test.deleteItem(9);
-// prettyPrint(test.root);
+test.deleteItem(23);
+test.deleteItem(7);
+
+prettyPrint(test.root);
 
 // Test find
 // console.log(test.find(7));
@@ -41,4 +43,5 @@ console.log(test.root);
 // test.inOrderForEach((item) => console.log("Inorder:", item.data));
 // test.preOrderForEach((item) => console.log("Preorder:", item.data));
 // test.postOrderForEach((item) => console.log("Postorder:", item.data));
-console.log(test.height(test.find(8)))
+// console.log(test.height(67));
+console.log(test.depth(6345));

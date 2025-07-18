@@ -26,23 +26,23 @@ export class Tree {
 
     // Delete method
     deleteItem(data, root = this.root) {
-    if (root === null) return root;
+        if (root === null) return root;
 
-    if (data < root.data) {
-        root.left = this.deleteItem(data, root.left);
-    } else if (root.data < data) {
-        root.right = this.deleteItem(data, root.right);
-    } else {
-        if (root.left === null) { return root.right; }
+        if (data < root.data) {
+            root.left = this.deleteItem(data, root.left);
+        } else if (root.data < data) {
+            root.right = this.deleteItem(data, root.right);
+        } else {
+            if (root.left === null) { return root.right; }
 
-        if (root.right === null) { return root.left; }
+            if (root.right === null) { return root.left; }
 
-        let succ = getSuccessor(root);
-        root.data = succ.data;
-        root.right = this.deleteItem(succ.data, root.right);
+            let succ = getSuccessor(root);
+            root.data = succ.data;
+            root.right = this.deleteItem(succ.data, root.right);
+        }
+        return root;
     }
-    return root;
-}
 
     find(data, root = this.root) {
         if (root === null) {
@@ -57,11 +57,9 @@ export class Tree {
             return this.find(data, root.left);
         } else if (root.data < data) {
             return this.find(data, root.right);
-        } else {
-            console.log("Not found");
-        }
+        } 
     }
-    
+
     levelOrderForEach(callback, root = this.root) {
         const q = [root];
 
@@ -74,7 +72,7 @@ export class Tree {
             }
 
             if (current.right !== null) {
-            q.push(current.right);
+                q.push(current.right);
             }
         }
 
@@ -112,7 +110,7 @@ export class Tree {
 
     postOrderForEach(callback, root = this.root) {
         if (root === null) return;
-        
+
         if (root.left !== null) {
             this.postOrderForEach(callback, root.left);
         }
@@ -126,22 +124,47 @@ export class Tree {
         return;
     }
 
-    height(root = this.root, h = 0) {
-        let curr = root;
+    height(value, root, h = 0) {
+        if (!value || this.find(value) === null) return null;
+        if (!root) {root = this.find(value)};
+
+        let h2 = h;
+
+        if (root.left !== null) {
+            h += 1;
+            h = this.height(value, root.left, h);
+
+        } 
+       
+        if (root.right !== null) {
+                h2 += 1;
+                h2 = this.height(value, root.right, h2);
+
+        }
         
-            if (curr.left !== null) {
-                h += 1;
-                h = this.height(curr.left, h);
-                
+        return h > h2 ? h : h2;
+    }
+
+    depth(value) {
+        if (!value || this.find(value) === null) return null;
+
+        let curr = this.root;
+        let d = 0;
+        
+        while (curr.data !== value) {
+            if (value < curr.data) {
+                curr = curr.left;
             } else {
-                if (curr.right !== null) {
-                    h += 1;
-                    h = this.height(curr.right, h);
-                
-                }
+                curr = curr.right;
             }
+            d += 1;
+        }
+
+        return d;
+    }
+
+    isBalanced() {
         
-        return h;
     }
 }
 
