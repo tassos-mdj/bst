@@ -163,8 +163,14 @@ export class Tree {
         return d;
     }
 
-    isBalanced() {
-        
+    isBalanced(root = this.root) {
+        if (root === null) {
+            return;
+        }
+
+        let diff = this.height(root.left.data) - this.height(root.right.data);
+        const result =  -2 < diff && diff < 2 ? true : false;
+        return result && this.isBalanced(root.left) && this.isBalanced(root.right);
     }
 }
 
