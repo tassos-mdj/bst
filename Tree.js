@@ -125,7 +125,7 @@ export class Tree {
     }
 
     height(value, root, h = 0) {
-        if (!value || this.find(value) === null) return null;
+        if (!value || value === null || this.find(value) === null) return null;
         if (!root) {root = this.find(value)};
 
         let h2 = h;
@@ -164,14 +164,27 @@ export class Tree {
     }
 
     isBalanced(root = this.root) {
-        if (root === null) {
-            return;
-        }
+    if (root === null) return true;
 
-        let diff = this.height(root.left.data) - this.height(root.right.data);
-        const result =  -2 < diff && diff < 2 ? true : false;
-        return result && this.isBalanced(root.left) && this.isBalanced(root.right);
-    }
+    const check = (node) => {
+        if (node === null) return { balanced: true, height: 0 };
+
+        const left = check(node.left);
+        const right = check(node.right);
+
+        const balanced = left.balanced &&
+                         right.balanced &&
+                         Math.abs(left.height - right.height) < 2;
+
+        return {
+            balanced,
+            height: 1 + Math.max(left.height, right.height)
+        };
+    };
+
+    return check(root).balanced;
+}
+
 }
 
 // Intermediate function to provide sorted and unique values array

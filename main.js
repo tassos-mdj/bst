@@ -33,6 +33,8 @@ console.log(test.root);
 test.deleteItem(3);
 test.deleteItem(5);
 test.deleteItem(7);
+// test.deleteItem(9);
+// test.deleteItem(23);
 
 prettyPrint(test.root);
 
@@ -47,4 +49,6 @@ prettyPrint(test.root);
 // test.postOrderForEach((item) => console.log("Postorder:", item.data));
 // console.log(test.height(67));
 // console.log(test.depth(6345));
+
+// test.isBalanced();
 console.log(test.isBalanced());
