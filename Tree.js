@@ -183,7 +183,13 @@ export class Tree {
     };
 
     return check(root).balanced;
-}
+    }
+
+    rebalance(root = this.root) {
+        const newlist = [];
+        this.inOrderForEach((item) => newlist.push(item.data))
+        this.root = buildTree(newlist);
+    }
 
 }
 

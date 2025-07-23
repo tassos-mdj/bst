@@ -33,8 +33,8 @@ console.log(test.root);
 test.deleteItem(3);
 test.deleteItem(5);
 test.deleteItem(7);
-// test.deleteItem(9);
-// test.deleteItem(23);
+test.deleteItem(9);
+test.deleteItem(23);
 
 prettyPrint(test.root);
 
@@ -44,7 +44,7 @@ prettyPrint(test.root);
 // Test levelOrderForEach
 // test.levelOrderForEach((item) => console.log("Levelorder:", item.data));
 
-// test.inOrderForEach((item) => console.log("Inorder:", item.data));
+test.inOrderForEach((item) => console.log("Inorder:", item.data));
 // test.preOrderForEach((item) => console.log("Preorder:", item.data));
 // test.postOrderForEach((item) => console.log("Postorder:", item.data));
 // console.log(test.height(67));
@@ -52,3 +52,10 @@ prettyPrint(test.root);
 
 // test.isBalanced();
 console.log(test.isBalanced());
+prettyPrint(test.root);
+
+test.rebalance();
+
+console.log(test.isBalanced());
+prettyPrint(test.root);
+
