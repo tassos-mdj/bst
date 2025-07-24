@@ -17,45 +17,58 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 // Sample Array
 const sample = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 
+//Random array creation
+const randomArray = []
+for (let i = 0; i < 20; i++) {
+  randomArray.push(Math.floor(Math.random() * 100));
+}
+
 // Test tree creation
-const test = new Tree(sample);
-prettyPrint(test.root);
-console.log(test.root);
+const myTree = new Tree(randomArray);
+prettyPrint(myTree.root);
 
-// Test insert
-// test.insert(test.root, 40);
-// prettyPrint(test.root);
-// test.insert(test.root, 6);
-// prettyPrint(test.root);
+// Check if tree is balanced
+console.log("Is the tree balanced:", myTree.isBalanced());
 
-// Test delete
-// test.deleteItem(1);
-test.deleteItem(3);
-test.deleteItem(5);
-test.deleteItem(7);
-test.deleteItem(9);
-test.deleteItem(23);
+// Print in level, pre, post, in order
+function printInAllOrders() {
+  let printArr = [];
+  myTree.levelOrderForEach((item) => printArr.push(item.data));
+  console.log("Tree in level order:", printArr);
 
-prettyPrint(test.root);
+  printArr = [];
+  myTree.preOrderForEach((item) => printArr.push(item.data));
+  console.log("Tree in preorder:", printArr);
 
-// Test find
-// console.log(test.find(7));
+  printArr = [];
+  myTree.postOrderForEach((item) => printArr.push(item.data));
+  console.log("Tree in postorder:", printArr);
 
-// Test levelOrderForEach
-// test.levelOrderForEach((item) => console.log("Levelorder:", item.data));
+  printArr = [];
+  myTree.inOrderForEach((item) => printArr.push(item.data));
+  console.log("Tree inorder:", printArr);
+}
+printInAllOrders();
 
-test.inOrderForEach((item) => console.log("Inorder:", item.data));
-// test.preOrderForEach((item) => console.log("Preorder:", item.data));
-// test.postOrderForEach((item) => console.log("Postorder:", item.data));
-// console.log(test.height(67));
-// console.log(test.depth(6345));
 
-// test.isBalanced();
-console.log(test.isBalanced());
-prettyPrint(test.root);
+// Unbalance tree
+console.log("Inserting 10 random values between 100 and 2000");
+for (let i = 0; i < 10; i++) {
+  let value = Math.floor((Math.random() * 1900) + 100);
+  myTree.insert(value);
+}
 
-test.rebalance();
+prettyPrint(myTree.root);
 
-console.log(test.isBalanced());
-prettyPrint(test.root);
+// Check if tree is balanced
+console.log("Is the tree balanced:", myTree.isBalanced());
 
+// Rebalance tree
+console.log("Rebalancing tree");
+myTree.rebalance();
+
+// Check if tree is balanced
+console.log("Is the tree balanced:", myTree.isBalanced());
+
+printInAllOrders();
+prettyPrint(myTree.root);

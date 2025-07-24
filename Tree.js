@@ -16,9 +16,9 @@ export class Tree {
         }
 
         if (data < root.data) {
-            root.left = this.insert(root.left, data);
+            root.left = this.insert(data, root.left);
         } else if (data > root.data) {
-            root.right = this.insert(root.right, data);
+            root.right = this.insert(data, root.right);
         }
 
         return root;
